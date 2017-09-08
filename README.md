@@ -3,6 +3,7 @@ Dockssh, ssh into any container from anywhere
 
 # Why
 - For learning and fun
+- Wasting some free time in my weekend :D
 - For testing/staging/development environments
 
 # How it works
