@@ -30,4 +30,5 @@ Download the binary from [here](https://github.com/alash3al/dockssh/releases/tag
 `go get github.com/alash3al/dockssh`
 
 # Usage
-`./dockssh --help`
+- Just `./dockssh`
+- or `./dockssh --help` to see its options
