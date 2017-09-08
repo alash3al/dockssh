@@ -23,7 +23,7 @@ Dockssh, ssh into any container from anywhere
 - Redis
 
 # Downloads
-Download the binary from [here](#)
+Download the binary from [here](https://github.com/alash3al/dockssh/releases/tag/v1.0.0)
 
 # Building from source
 `go get github.com/alash3al/dockssh`
