@@ -7,7 +7,7 @@ Dockssh, ssh into any container from anywhere
 - For testing/staging/development environments
 
 # How it works
-- `Dockssh` runing on port `22022` on host `example.com`
+- `Dockssh` running on port `22022` on host `example.com`
 - A user connects to `dockssh` i.e `ssh -p 22022 container1@example.com`
 - `Dockssh` checks if the user provided password is the same as the one stored in redis key `dockssh:container1:pass`
 - On success, `Dockssh` will open a `PTY` (pseudotty) to `docker exec -it container1 /bin/sh`
