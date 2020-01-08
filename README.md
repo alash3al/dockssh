@@ -56,3 +56,45 @@ You need to get the dependencies using the command:
     `ssh TestCont@host_ip_address -p 22022`
 - Enter `yes`.
 - Enter your password and press Enter.
+
+# Run Server in Background
+You can make a service to run the `dockssh` in background
+- Firlstly go to `/etc/systemd/system`: <br/>
+    `cd /etc/systemd/system`
+- Create a file named `dockssh.service`: <br/>
+    `sudo nano dockssh.service`
+- Paste the following code: <br/>
+    ```
+    [Unit]
+    Description=Dockssh Service to listen for connections
+    After=network.target
+
+    [Service]
+    type=simple
+    Restart=always
+    RestartSec=1
+    User=root
+    ExecStart=/root/dockssh
+
+    [Install]
+    WantedBy=multi-user.target
+    ```
+- Save the file with `Ctrl+O` then hit `Enter`
+- Enable the service file: <br/>
+    `sudo systemctl enable dockssh.service`
+- Start the service: <br/>
+    `sudo systemctl start dockssh`
+- Make sure the service has started successfully: <br/>
+    `sudo systemctl status dockssh` <br/>
+    You should see something like: <br/>
+    ```
+   dockssh.service - Dockssh Service to listen for connections
+   Loaded: loaded (/etc/systemd/system/dockssh.service; enabled; vendor preset: enabled)
+   Active: active (running) since Wed 2020-01-08 04:40:36 UTC; 6h ago
+   Main PID: 16132 (dockssh)
+    Tasks: 17 (limit: 1109)
+    CGroup: /system.slice/dockssh.service
+           ├─16132 /root/dockssh
+           └─16556 docker exec -it test2 bash
+   ```
+ - Enjoy ^^
