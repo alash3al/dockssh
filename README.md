@@ -8,10 +8,9 @@ Dockssh, ssh into any container from anywhere
 
 # How it works
 - `Dockssh` running on port `22022` on host `example.com`
-- A user connects to `dockssh` i.e `ssh -p 22022 container1@example.com`
+- A user connects to `container1` using `dockssh` from remote computer i.e `ssh -p 22022 container1@example.com`
 - `Dockssh` checks if the user provided password is the same as the one stored in redis key `dockssh:container1:pass`
 - On success, `Dockssh` will open a `PTY` (pseudotty) to `docker exec -it container1 /bin/sh`
-- Have fun ^^! (replace `container1` with any of your containers)
 
 # Why redis for configurations
 - No configurations files
@@ -27,8 +26,33 @@ Dockssh, ssh into any container from anywhere
 Download the binary from [here](https://github.com/alash3al/dockssh/releases)
 
 # Building from source
+You need to get the dependencies using the command:
 `go get github.com/alash3al/dockssh`
 
 # Usage
-- Just `./dockssh`
-- or `./dockssh --help` to see its options
+<strong>On the host machine:</strong>
+- Install [Redis](https://redis.io/) using the commands:
+    Debian: `sudo apt install redis`
+    RHEL: `sudo yum install redis`
+- Create a container for testing, I will name it `TestCont`:
+    `sudo docker create --name TestCont -it ubuntu:latest bash`
+- Start the container:
+    `sudo docker start TestCont`
+- Set a password for the container over SSH:
+    `redis-cli set dockerssh:TestCont:pass "mypass"`
+- Download the latest `Dockssh` binary from [here](https://github.com/alash3al/dockssh/releases).
+- Rename the file to `dockssh`.
+- Make it executable:
+    `chmod 775 dockssh`
+- Make sure to open the port in the firewall:
+    `sudo ufw allow 22022`
+- Run the server:
+    `./dockssh`
+- You should see a message:
+    `Now listening on port: 22022`
+
+<strong>On the remote machine:</strong>
+- Connect to your container:
+    `ssh TestCont@host_ip_address -p 22022`
+- Enter `yes`.
+- Enter your password and press Enter.
