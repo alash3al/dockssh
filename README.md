@@ -31,28 +31,28 @@ You need to get the dependencies using the command:
 
 # Usage
 <strong>On the host machine:</strong>
-- Install [Redis](https://redis.io/) using the commands:
-    Debian: `sudo apt install redis`
+- Install [Redis](https://redis.io/) using the commands:<br/>
+    Debian: `sudo apt install redis`<br/>
     RHEL: `sudo yum install redis`
-- Create a container for testing, I will name it `TestCont`:
+- Create a container for testing, I will name it `TestCont`:<br/>
     `sudo docker create --name TestCont -it ubuntu:latest bash`
-- Start the container:
+- Start the container:<br/>
     `sudo docker start TestCont`
-- Set a password for the container over SSH:
+- Set a password for the container over SSH:<br/>
     `redis-cli set dockerssh:TestCont:pass "mypass"`
 - Download the latest `Dockssh` binary from [here](https://github.com/alash3al/dockssh/releases).
 - Rename the file to `dockssh`.
-- Make it executable:
+- Make it executable:<br/>
     `chmod 775 dockssh`
-- Make sure to open the port in the firewall:
+- Make sure to open the port in the firewall:<br/>
     `sudo ufw allow 22022`
-- Run the server:
+- Run the server:<br/>
     `./dockssh`
-- You should see a message:
+- You should see a message:<br/>
     `Now listening on port: 22022`
 
 <strong>On the remote machine:</strong>
-- Connect to your container:
+- Connect to your container:<br/>
     `ssh TestCont@host_ip_address -p 22022`
 - Enter `yes`.
 - Enter your password and press Enter.
