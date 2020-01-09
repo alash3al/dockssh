@@ -6,10 +6,10 @@
 package main
 
 import (
+	"fmt"
 	"log"
-)
+	"strings"
 
-import (
 	"github.com/gliderlabs/ssh"
 	"github.com/go-redis/redis"
 )
@@ -34,6 +34,10 @@ func main() {
 	if *flagHostKeyFile != "" {
 		sshOpts = append(sshOpts, ssh.HostKeyFile(*flagHostKeyFile))
 	}
+
+	var port string = *flagListenAddr
+	port = strings.Replace(port, "0.0.0.0:", "", 1)
+	fmt.Println("Now listening on port: " + port)
 
 	log.Fatal(ssh.ListenAndServe(
 		*flagListenAddr,
