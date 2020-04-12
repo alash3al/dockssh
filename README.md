@@ -39,7 +39,7 @@ You need to get the dependencies using the command:
 - Start the container:<br/>
     `sudo docker start TestCont`
 - Set a password for the container over SSH:<br/>
-    `redis-cli set dockerssh:TestCont:pass "mypass"`
+    `redis-cli set dockssh:TestCont:pass "mypass"`
 - Download the latest `Dockssh` binary from [here](https://github.com/alash3al/dockssh/releases).
 - Rename the file to `dockssh`.
 - Make it executable:<br/>
